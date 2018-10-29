@@ -1,0 +1,34 @@
+<form class="example-form" [formGroup]="dashboardForm" (ngSubmit)="onSubmit()" >
+
+  <div class="form-field">
+    
+       <mat-form-field>
+         <input matInput placeholder="First Name" [formControl] = "firstName" required>
+         <mat-error *ngIf="email.invalid">{{getErrorMessageFirstName()}}</mat-error>
+       </mat-form-field>
+     
+       <mat-form-field>
+        <input matInput placeholder="Last Name" [formControl] = "lastName" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessageLastName()}}</mat-error>
+       </mat-form-field>
+
+       <mat-form-field>
+         <input matInput  placeholder="Telephone" [formControl]="phoneNumber"  required >
+         <mat-error *ngIf="phoneNumber.hasError('required')">Enter a valid Number</mat-error>
+         <mat-error *ngIf="phoneNumber.hasError('maxlength')">Required 10 digit</mat-error>
+         <mat-error *ngIf="phoneNumber.hasError('minlength')">Required 10 digit</mat-error>
+       </mat-form-field>
+ 
+       <mat-form-field>
+           <input matInput placeholder="Enter your email" [formControl]="email" required>
+           <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+       </mat-form-field>
+     
+  </div>
+   <div class="button-row" >
+     <button mat-raised-button color="primary" [disabled]="!dashboardForm.valid">Add</button>
+   </div>
+ 
+ </form>
+ 
+ <app-show-person-data></app-show-person-data>
